@@ -1,10 +1,16 @@
-import React from 'react'
+import React from "react";
 
-export default function Searchbar() {
-    return (
-      <div className="search-container">
-          <i className="fa-solid fa-magnifying-glass"></i>
-          <input type="text" placeholder="Search for a country..."/>
+export default function Searchbar({ setQuery }) {
+  return (
+    <div className="search-container">
+      <i className="fa-solid fa-magnifying-glass"></i>
+      <input
+        type="text"
+        onChange={(e) => {
+          setQuery(e.target.value.toLowerCase());
+        }}
+        placeholder="Search for a country..."
+      />
     </div>
-  )
+  );
 }
