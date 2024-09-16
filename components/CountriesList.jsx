@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import countriesData from "../countriesData";
 import CountryCard from "./CountryCard";
 
-export default function CountriesList({query}) {
+export default function CountriesList({ query }) {
+  const [countriesData, setCountriesData] = React.useState([]);
 
+  useEffect(()=>{
+    
+  if (countriesData.length === 0) {
+    fetch("https://restcountries.com/v3.1/all")
+      .then((res) => res.json())
+      .then((data) => {
+        setCountriesData(data);
+      });
+  }
+  }, [])
   return (
     <>
+    <button onClick={()=>setCountriesData([])}>Remove all</button>
       <div className="countries-container">
         {countriesData
           .filter((country) =>
@@ -21,7 +33,6 @@ export default function CountriesList({query}) {
               capital={country.capital?.[0]}
             />
           ))}
-        ;
       </div>
     </>
   );
