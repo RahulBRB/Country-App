@@ -5,7 +5,6 @@ export default function CountriesList({ query }) {
   const [countriesData, setCountriesData] = React.useState([]);
 
   useEffect(()=>{
-    
   if (countriesData.length === 0) {
     fetch("https://restcountries.com/v3.1/all")
       .then((res) => res.json())
