@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import countriesData from "../countriesData";
 import CountryCard from "./CountryCard";
 
 export default function CountriesList({ query }) {
@@ -17,7 +16,6 @@ export default function CountriesList({ query }) {
   }, [])
   return (
     <>
-    <button onClick={()=>setCountriesData([])}>Remove all</button>
       <div className="countries-container">
         {countriesData
           .filter((country) =>
