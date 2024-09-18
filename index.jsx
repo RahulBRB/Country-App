@@ -4,6 +4,7 @@ import App from "./App";
 import { ContactPage } from "./components/ContactPage";
 import Home from "./components/Home";
 import Error from "./components/Error";
+import CountryDetail from "./components/CountryDetail";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <ContactPage />,
       },
+
+      {
+        path: '/country',
+        element: <CountryDetail />,
+      }
     ],
   },
 ]);
