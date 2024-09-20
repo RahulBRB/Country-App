@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./CountryDetail.css";
+import { useParams } from "react-router-dom";
 
 export default function CountryDetail() {
-  const countryName = new URLSearchParams(location.search).get("name");
-
+  const params = useParams();
+  console.log(params);
+  const countryName = params.country;
   const [countryData, setCountryData] = useState([]);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
@@ -25,15 +28,21 @@ export default function CountryDetail() {
             .map((currency) => currency.name)
             .join(", "),
         });
+      }).catch (err => {
+        setNotFound(true);
       });
   }, []);
+
+  if (notFound) {
+  return <div>Country Not Found</div>
+  }
 
   return countryData === null ? (
     "Loading. . "
   ) : (
     <main>
       <div className="country-details-container">
-        <span className="back-button">
+        <span className="back-button" onClick={()=>history.back()}>
           <i className="fa-solid fa-arrow-left"></i>&nbsp; Back
         </span>
         <div className="country-details">
