@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./CountryDetail.css";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function CountryDetail() {
   const params = useParams();
@@ -27,13 +27,16 @@ export default function CountryDetail() {
           currencies: Object.values(data.currencies)
             .map((currency) => currency.name)
             .join(", "),
-          borders: ["India"],
+          borders: [],
         });
+        console.log("borders:" + data.borders)
+
       })
+
       .catch((err) => {
         setNotFound(true);
       });
-  }, []);
+  }, [countryName]);
 
   if (notFound) {
     return <div>Country Not Found</div>;
@@ -85,14 +88,16 @@ export default function CountryDetail() {
                 <span className="languages">{countryData.languages}</span>
               </p>
             </div>
-            <div className="border-countries">
-              <b>Border Countries: </b>&nbsp;
-              {countryData.borders.map((border) => (
-                <Link key={border} to={`/${border}`}>
-                  {border}
-                </Link>
-              ))}
-            </div>
+           {countryData.borders.length !== 0 && 
+             <div className="border-countries">
+             <b>Border Countries: </b>&nbsp;
+             {countryData.borders.map((border) => (
+               <Link key={border} to={`/${border}`}>
+                 {border}
+               </Link>
+             ))}
+           </div>
+           }
           </div>
         </div>
       </div>
