@@ -27,14 +27,16 @@ export default function CountryDetail() {
           currencies: Object.values(data.currencies)
             .map((currency) => currency.name)
             .join(", "),
+          borders: ["India"],
         });
-      }).catch (err => {
+      })
+      .catch((err) => {
         setNotFound(true);
       });
   }, []);
 
   if (notFound) {
-  return <div>Country Not Found</div>
+    return <div>Country Not Found</div>;
   }
 
   return countryData === null ? (
@@ -42,11 +44,11 @@ export default function CountryDetail() {
   ) : (
     <main>
       <div className="country-details-container">
-        <span className="back-button" onClick={()=>history.back()}>
+        <span className="back-button" onClick={() => history.back()}>
           <i className="fa-solid fa-arrow-left"></i>&nbsp; Back
         </span>
         <div className="country-details">
-          <img src={countryData.flag} alt={countryData.name + `Flag` } />
+          <img src={countryData.flag} alt={countryData.name + `Flag`} />
           <div className="details-text-container">
             <h1>{countryData.name}</h1>
             <div className="details-text">
@@ -85,6 +87,11 @@ export default function CountryDetail() {
             </div>
             <div className="border-countries">
               <b>Border Countries: </b>&nbsp;
+              {countryData.borders.map((border) => (
+                <Link key={border} to={`/${border}`}>
+                  {border}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
