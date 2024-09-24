@@ -4,7 +4,6 @@ import { Link, useParams } from "react-router-dom";
 
 export default function CountryDetail() {
   const params = useParams();
-  console.log(params);
   const countryName = params.country;
   const [countryData, setCountryData] = useState([]);
   const [notFound, setNotFound] = useState(false);
@@ -28,9 +27,15 @@ export default function CountryDetail() {
             .map((currency) => currency.name)
             .join(", "),
           borders: [],
-        });
-        console.log("borders:" + data.borders)
-
+        })
+        data.borders.map((border) => {
+          fetch(`https://restcountries.com/v3.1/alpha/${border}`)
+          .then((res) => res.json())
+          .then(([borderCountry]) =>{
+            console.log(borderCountry.name.common);
+            setCountryData((prev)=> ({...prev, borders: [...prev.borders, borderCountry.name.common]}))
+          })
+        })
       })
 
       .catch((err) => {
@@ -88,16 +93,13 @@ export default function CountryDetail() {
                 <span className="languages">{countryData.languages}</span>
               </p>
             </div>
-           {countryData.borders.length !== 0 && 
-             <div className="border-countries">
-             <b>Border Countries: </b>&nbsp;
-             {countryData.borders.map((border) => (
-               <Link key={border} to={`/${border}`}>
-                 {border}
-               </Link>
-             ))}
-           </div>
-           }
+            {/* { countryData.borders.length !== 0 && <div className="border-countries">
+              <b>Border Countries: </b>&nbsp;
+              {
+                countryData.borders.map((border) => <Link key={border} to={`/${border}`}>{border}</Link>)
+              }
+            </div>}
+            */}
           </div>
         </div>
       </div>
