@@ -5,8 +5,6 @@ import { ContactPage } from "./components/ContactPage";
 import Home from "./components/Home";
 import Error from "./components/Error";
 import CountryDetail from "./components/CountryDetail";
-import CountryDetails from "./components/CountryDetails"; // Assuming you have these components
-import CountryPopulation from "./components/CountryPopulation"; // Assuming you have these components
 
 const RootApp = () => {
   return (
@@ -17,8 +15,6 @@ const RootApp = () => {
           <Route path="/contact" element={<ContactPage />} />
           {/* Nested Route under Country */}
           <Route path="/:country" element={<CountryDetail />}>
-            <Route path="details" element={<CountryDetails />} />
-            <Route path="population" element={<CountryPopulation />} />
           </Route>
         </Route>
         <Route path="*" element={<Error />} />
