@@ -7,8 +7,10 @@ export default function Header() {
         <h2 className="title">
           <a href="/">Where in the world?</a>
         </h2>
-        <p className="theme-changer">
-          <i className="fa-regular fa-moon" />
+        <p className="theme-changer" onClick={()=>{
+          document.body.classList.toggle("dark");
+        }}>
+          <i className="fa-solid fa-moon" />
           &nbsp;&nbsp;Dark Mode
         </p>
       </div>
