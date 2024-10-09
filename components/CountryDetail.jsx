@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./CountryDetail.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 export default function CountryDetail() {
   const params = useParams()
-  const countryName = params.country
+  const {state} = useLocation()
+  console.log(state);
 
+  const countryName = params.country
   const [countryData, setCountryData] = useState(null)
   const [notFound, setNotFound] = useState(false)
 
