@@ -3,11 +3,11 @@ import Searchbar from "./Searchbar";
 import SelectMenu from "./SelectMenu";
 import CountriesList from "./CountriesList";
 import { ThemeContext } from "../contexts/ThemeContext";
-import { getWindowSize } from "../utility";
+import { useWindowSize } from "../hooks/useWindowSize";
 export default function Home() {
   const [query, setQuery] = useState("");
   const [isDark] = useContext(ThemeContext);
-  const windowSize = getWindowSize();
+  const windowSize = useWindowSize();
   return (
     <main className={`${isDark ? "dark" : ""}`}>
       <div className="search-filter-container">

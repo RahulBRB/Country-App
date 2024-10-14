@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import './CountryDetail.css'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { ThemeContext } from '../contexts/ThemeContext';
-import { getWindowSize } from '../utility';
+import { useWindowSize } from '../hooks/useWindowSize';
 
 export default function CountryDetail() {
   const [isDark] = useContext(ThemeContext);
@@ -13,7 +13,7 @@ export default function CountryDetail() {
 
   const [countryData, setCountryData] = useState(null)
   const [notFound, setNotFound] = useState(false)
-  const windowSize = getWindowSize();
+  const windowSize = useWindowSize();
 
   console.log(countryData);
 
