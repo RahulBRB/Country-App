@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from 'react'
 
 import './CountryDetail.css'
 import { Link, useLocation, useParams } from 'react-router-dom'
-import { ThemeContext } from '../contexts/ThemeContext';
+import { useTheme } from '../hooks/useTheme'
+// import { ThemeContext } from '../contexts/ThemeContext';
 // import { useWindowSize } from '../hooks/useWindowSize';
 
 export default function CountryDetail() {
-  const [isDark] = useContext(ThemeContext);
+  // const [isDark] = useContext(ThemeContext);
+  const [isDark] = useTheme();
   const params = useParams()
   const { state } = useLocation()
   const countryName = params.country

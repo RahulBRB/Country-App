@@ -1,9 +1,12 @@
 import React, { useContext} from "react";
-import { ThemeContext } from "../contexts/ThemeContext";
+import { useTheme } from "../hooks/useTheme";
+// import { ThemeContext } from "../contexts/ThemeContext";
 
 export default function Header() {
   // const [isDark, setIsDark] = theme;
-  const [isDark,setIsDark] = useContext(ThemeContext);
+  // const [isDark,setIsDark] = useContext(ThemeContext);
+
+  const [isDark, setIsDark] = useTheme();
 
   // if(isDark){
   //   document.body.classList.add("dark");
