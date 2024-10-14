@@ -6,10 +6,12 @@ import {ThemeContext} from "../contexts/ThemeContext";
 export default function Home() {
     const [query, setQuery] = useState("");
     const [isDark] = useContext(ThemeContext);
-
+    const [width, setWidth] = useState(
+      window.innerWidth
+    )
     useEffect(()=>{
       window.addEventListener('resize', ()=>{
-        console.log('resized')
+       setWidth(window.innerWidth)
       })
     }, [])
 
@@ -19,6 +21,7 @@ export default function Home() {
       <Searchbar setQuery={setQuery} />
       <SelectMenu />
     </div>
+    <h1 style={{textAlign: 'center'}}>{width}</h1>
     <CountriesList query={query} />
   </main>
   )
